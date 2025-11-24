@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Recolector de Frases</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">💡</div>
+      <div>
+        <h1>Lluvia de ideas</h1>
+        <p>Escanea el QR, escribe tu frase y aparece aquí</p>
+      </div>
+    </div>
+    <a class="csv-btn" href="/api/phrases.csv" target="_blank">Descargar CSV</a>
+  </header>
+
+  <main class="layout">
+    <section class="input-card">
+      <h2>Comparte tu frase</h2>
+      <p>Puede ser una idea, comentario o propuesta.</p>
+
+      <form id="phraseForm">
+        <textarea id="phraseInput" maxlength="300" placeholder="Escribe una frase..."></textarea>
+        <div class="row">
+          <span id="counter">0 / 300</span>
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="board">
+      <div class="board-bg"></div>
+      <div id="phrasesContainer" class="phrases"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

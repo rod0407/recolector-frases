@@ -1,0 +1,170 @@
+:root{
+  --bg: #0b1020;
+  --panel: rgba(255,255,255,0.06);
+  --panel-strong: rgba(255,255,255,0.10);
+  --text: #e7ecff;
+  --muted: #aab3d9;
+  --accent: #7cf3d0;
+  --accent2: #9aa7ff;
+  --danger: #ff8f8f;
+
+  /* paleta de post-its */
+  --p1: #ffe88a;
+  --p2: #b8f7d4;
+  --p3: #ffc7d9;
+  --p4: #cdd7ff;
+  --p5: #ffd6a6;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 10% -10%, #192a63 0%, transparent 60%),
+              radial-gradient(1200px 900px at 100% 0%, #1a5b4a 0%, transparent 55%),
+              var(--bg);
+  color: var(--text);
+  min-height:100vh;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 18px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  position:sticky; top:0; z-index:5;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.brand{display:flex; gap:12px; align-items:center}
+.logo{
+  width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;
+  background: linear-gradient(135deg, #2b7cff, #7cf3d0);
+  color:#001228;font-size:22px;font-weight:700;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.4);
+}
+.topbar h1{margin:0;font-size:20px}
+.topbar p{margin:2px 0 0;color:var(--muted);font-size:12px}
+
+.csv-btn{
+  text-decoration:none; color:#001228; font-weight:700;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  padding:10px 12px;border-radius:10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:16px;
+  padding:16px;
+}
+@media (max-width: 900px){
+  .layout{grid-template-columns:1fr}
+}
+
+.input-card{
+  background: var(--panel);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px; padding:14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  position:sticky; top:80px; height:fit-content;
+}
+.input-card h2{margin:4px 0 6px}
+.input-card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+
+textarea{
+  width:100%; min-height:110px; resize:vertical;
+  background: var(--panel-strong);
+  border:1px solid rgba(255,255,255,0.10);
+  color:var(--text);
+  padding:10px;border-radius:12px;font-size:15px;
+  outline:none;
+}
+textarea:focus{border-color: var(--accent)}
+
+.row{
+  display:flex; justify-content:space-between; align-items:center; margin-top:8px;
+}
+#counter{color:var(--muted);font-size:12px}
+button{
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  border:none; color:#001228;font-weight:800;
+  padding:10px 14px;border-radius:12px; cursor:pointer;
+}
+button:active{transform: translateY(1px)}
+
+.status{margin-top:8px;font-size:13px}
+.status.ok{color:var(--accent)}
+.status.err{color:var(--danger)}
+
+.board{
+  position:relative;
+  background: var(--panel);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  min-height:70vh;
+  overflow:hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.board-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(600px 300px at 10% 0%, rgba(124,243,208,0.12), transparent 60%),
+    radial-gradient(700px 400px at 100% 10%, rgba(154,167,255,0.12), transparent 65%);
+  pointer-events:none;
+}
+
+/* contenedor ahora es un "lienzo" absoluto */
+.phrases{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:70vh;
+}
+
+/* post-it flotante */
+.note{
+  position:absolute;
+  width: clamp(180px, 22vw, 260px);
+  padding:12px 12px 10px;
+  border-radius:10px 10px 12px 12px;
+  color:#101425;
+  background: var(--sticky);
+  border:1px solid rgba(0,0,0,0.12);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.35),
+    inset 0 -8px 14px rgba(0,0,0,0.08);
+  transform: rotate(var(--rot));
+  animation: pop 260ms ease-out;
+}
+
+/* cinta arriba */
+.note:before{
+  content:"";
+  position:absolute; top:-8px; left:18px;
+  width:42px;height:14px;border-radius:8px;
+  background: rgba(255,255,255,0.55);
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.note .meta{
+  margin-top:8px;font-size:11px;color:rgba(0,0,0,0.6);
+  display:flex; justify-content:space-between; gap:8px;
+}
+
+.text{
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size:15px;
+  line-height:1.35;
+}
+
+@keyframes pop{
+  from{transform: scale(0.96) rotate(var(--rot)); opacity:0}
+  to{transform: scale(1) rotate(var(--rot)); opacity:1}
+}
