@@ -2,7 +2,7 @@
 
 Una aplicación web interactiva tipo "muro de post-its" (lluvia de ideas) que permite a los usuarios escribir y compartir frases, comentarios o ideas. Las frases enviadas se muestran dinámicamente en un tablero visual y se almacenan automáticamente en un documento de Google Sheets.
 
- **¡Proyecto desplegado en vivo!** Puedes probar la aplicación aquí: [https://recolector-frases.onrender.com/](https://recolector-frases.onrender.com/)
+ **Puedes probar la aplicación aquí:** [https://recolector-frases.onrender.com/](https://recolector-frases.onrender.com/)
 
 ---
 
